@@ -94,27 +94,38 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import { Button, AppBar, Toolbar, Typography, Paper, Divider } from '@material-ui/core';
 import TextEditor from '../../components/TextEditor';
-
 const Doc = ({ session }) => {
   const router = useRouter();
   const { id } = router.query;
   const [doc, setDoc] = useState(null);
 
   useEffect(() => {
-    if (!session) return;
+    console.log('Document ID:', id);
+    console.log('User Session:', session);
 
+    if (!session) return;
+    
     db.collection('userDocs')
       .doc(session?.user.email)
       .collection('docs')
       .doc(id)
       .get()
+      // .then((data) => {
+      //   if (data.data()) {
+      //     setDoc({ ...data.data() });
+      //   } else {
+      //     router.replace('/');
+      //   }
+      // })
       .then((data) => {
+        console.log('Firestore Document Data:', data.data());
         if (data.data()) {
           setDoc({ ...data.data() });
         } else {
           router.replace('/');
         }
       })
+      
       .catch((err) => alert(err));
   }, [id, session]);
 

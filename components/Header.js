@@ -78,7 +78,7 @@ const Header = () => {
   const [session] = useSession();
 
   return (
-    <header className="bg-gradient-to-r from-purple-500 to-blue-600 p-4 shadow-md sticky top-0 z-50">
+    <header className="bg-gradient-to-r from-black-500 to-white-600 p-4 shadow-md sticky top-0 z-50">
       <div className="flex items-center justify-between max-w-6xl mx-auto">
 
         <div className="flex items-center space-x-4">
