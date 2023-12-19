@@ -55,6 +55,7 @@ const DocumentRow = ({ doc, session }) => {
     if (window.confirm('Are you sure you want to delete this document?')) {
       deleteDocument(doc.id, session, router);
     }
+    database.ref(`documents/${doc.id}/collaborators`).remove(); // added this
   };
 
   return (
